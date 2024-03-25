@@ -1,0 +1,81 @@
+{
+  "products": [
+    {
+      "id": "1db865d7-ccd2-48d0-ad3a-f088ec282fe0",
+      "title": "20kg Barbell",
+      "description": "High-quality 20kg barbell designed for durability and comfort. Ideal for enhancing your workout routine and achieving your fitness goals.",
+      "price": 90.83,
+      "count": 73
+    },
+    {
+      "id": "1572d9da-775b-4e56-9659-6fa72ab033b6",
+      "title": "5kg Iron Disk",
+      "description": "High-quality 5kg iron disk designed for durability and comfort. Ideal for enhancing your workout routine and achieving your fitness goals.",
+      "price": 493.14,
+      "count": 27
+    },
+    {
+      "id": "ef238f2e-d1e2-40ab-b4f3-4fcd4adddb53",
+      "title": "Yoga Mat",
+      "description": "High-quality yoga mat designed for durability and comfort. Ideal for enhancing your workout routine and achieving your fitness goals.",
+      "price": 225.55,
+      "count": 42
+    },
+    {
+      "id": "c962af0b-2ebe-4467-8b0a-0199f3eecfcc",
+      "title": "Resistance Band Set",
+      "description": "High-quality resistance band set designed for durability and comfort. Ideal for enhancing your workout routine and achieving your fitness goals.",
+      "price": 385.56,
+      "count": 54
+    },
+    {
+      "id": "0a928e27-38bd-40f3-9673-6959cd7ae418",
+      "title": "Adjustable Dumbbell",
+      "description": "High-quality adjustable dumbbell designed for durability and comfort. Ideal for enhancing your workout routine and achieving your fitness goals.",
+      "price": 213.82,
+      "count": 29
+    },
+    {
+      "id": "3b3b351d-39e0-4e87-a87b-881ad0568a1b",
+      "title": "Kettlebell 15kg",
+      "description": "High-quality kettlebell 15kg designed for durability and comfort. Ideal for enhancing your workout routine and achieving your fitness goals.",
+      "price": 166.94,
+      "count": 9
+    },
+    {
+      "id": "97aa531f-bad3-4964-88ab-4c87eeaf0762",
+      "title": "Foam Roller",
+      "description": "High-quality foam roller designed for durability and comfort. Ideal for enhancing your workout routine and achieving your fitness goals.",
+      "price": 47.98,
+      "count": 88
+    },
+    {
+      "id": "3572189e-32e2-497f-ad39-319dd8e3f564",
+      "title": "Hand Grip Strengthener",
+      "description": "High-quality hand grip strengthener designed for durability and comfort. Ideal for enhancing your workout routine and achieving your fitness goals.",
+      "price": 225.25,
+      "count": 12
+    },
+    {
+      "id": "c6bef872-4356-4f9f-933d-6d325aa168a8",
+      "title": "Fitness Tracker",
+      "description": "High-quality fitness tracker designed for durability and comfort. Ideal for enhancing your workout routine and achieving your fitness goals.",
+      "price": 356.38,
+      "count": 74
+    },
+    {
+      "id": "0dc6b765-3b01-477f-965a-b087759681e8",
+      "title": "Push-up Bars",
+      "description": "High-quality push-up bars designed for durability and comfort. Ideal for enhancing your workout routine and achieving your fitness goals.",
+      "price": 497.99,
+      "count": 35
+    },
+    {
+      "id": "99d08445-07aa-437b-9c08-062895e15ee0",
+      "title": "Boxing Gloves",
+      "description": "High-quality boxing gloves designed for durability and comfort. Ideal for enhancing your workout routine and achieving your fitness goals.",
+      "price": 173.8,
+      "count": 61
+    }
+  ]
+}
