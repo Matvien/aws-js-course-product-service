@@ -5,11 +5,22 @@ provider:
   name: aws
   runtime: nodejs16.x
   region: eu-central-1
+  httpApi:
+    cors: true
 
 functions:
-  api:
-    handler: index.handler
+  getProductsList:
+    handler: src/lambda/getProductsList.getProductsList
     events:
       - httpApi:
-          path: /
+          path: /products
           method: get
+  getProductsById:
+    handler: src/lambda/getProductsById.getProductsById
+    events:
+      - httpApi:
+          path: /products/{productId}
+          method: get
+
+plugins:
+  - serverless-plugin-typescript
