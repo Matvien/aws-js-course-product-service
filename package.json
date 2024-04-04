@@ -1,0 +1,12 @@
+{
+  "name": "matvien-product-service",
+  "description": "CloudX: AWS Practitioner for JS #6",
+  "version": "1.0.0",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.136",
+    "serverless": "^3.38.0",
+    "serverless-plugin-typescript": "^2.1.5",
+    "typescript": "^5.3.2"
+  }
+}
