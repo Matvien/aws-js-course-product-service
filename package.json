@@ -2,11 +2,22 @@
   "name": "matvien-product-service",
   "description": "CloudX: AWS Practitioner for JS #6",
   "version": "1.0.0",
-  "dependencies": {},
+  "scripts": {
+    "deploy": "sls deploy",
+    "initialUpload": "ENV=local ts-node ./src/db/initialUpload.ts",
+    "localDbTest": "ENV=local ts-node ./src/db/localTest.ts"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "3.540.0",
+    "@aws-sdk/lib-dynamodb": "3.540.0",
+    "uuid": "9.0.1",
+    "yup": "1.4.0"
+  },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.136",
     "serverless": "^3.38.0",
     "serverless-plugin-typescript": "^2.1.5",
+    "ts-node": "10.9.2",
     "typescript": "^5.3.2"
   }
 }

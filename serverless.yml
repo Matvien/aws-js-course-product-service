@@ -7,6 +7,19 @@ provider:
   region: eu-central-1
   httpApi:
     cors: true
+  environment:
+    PRODUCTS_TABLE_NAME: !Ref productsTable
+    STOCKS_TABLE_NAME: !Ref stocksTable
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - "dynamodb:ListTables"
+            - "dynamodb:Scan"
+            - "dynamodb:BatchGetItem"
+            - "dynamodb:PutItem"
+          Resource: "*"
 
 functions:
   getProductsList:
@@ -21,6 +34,41 @@ functions:
       - httpApi:
           path: /products/{productId}
           method: get
+  createProduct:
+    handler: src/lambda/createProduct.createProduct
+    events:
+      - httpApi:
+          path: /products
+          method: post
+
+resources:
+  Resources:
+    productsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: products
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5
+    stocksTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: stocks
+        AttributeDefinitions:
+          - AttributeName: product_id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: product_id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5
 
 plugins:
   - serverless-plugin-typescript

@@ -1,12 +1,23 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
-import { getAllProducts } from "../db/products";
+import { initializeDatabaseService } from "../db/initDatabaseService";
+import { errorResponse } from "../utils/response";
 
 export const getProductsList = async (
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> => {
-  return {
-    statusCode: 200,
-    body: JSON.stringify(getAllProducts(), null, 2),
-  };
+  console.log(event);
+  try {
+    const dbService = initializeDatabaseService();
+
+    const products = await dbService.getAllProducts();
+
+    return {
+      statusCode: 200,
+      body: JSON.stringify(products, null, 2),
+    };
+  } catch (e) {
+    console.error(e);
+    return errorResponse(500, "Error");
+  }
 };
