@@ -21,6 +21,7 @@ const serverlessConfiguration: AWS = {
       REGION: "${self:provider.region}",
       BUCKET: "${self:custom.bucketName}",
       FOLDER: "${self:custom.folderName}",
+      CATALOG_ITEMS_QUEUE_URL: "${self:custom.catalogItemsQueue.url}",
     },
     iam: {
       role: {
@@ -30,6 +31,11 @@ const serverlessConfiguration: AWS = {
             Action: ["s3:PutObject", "s3:GetObject"],
             Resource:
               "arn:aws:s3:::${self:custom.bucketName}/${self:custom.folderName}/*",
+          },
+          {
+            Effect: "Allow",
+            Action: ["sqs:sendmessage"],
+            Resource: "${self:custom.catalogItemsQueue.arn}",
           },
         ],
       },
@@ -50,6 +56,10 @@ const serverlessConfiguration: AWS = {
     },
     bucketName: "aws-course-import-bucket",
     folderName: "uploaded",
+    catalogItemsQueue: {
+      url: "https://sqs.eu-central-1.amazonaws.com/278497268453/catalogItemsQueue",
+      arn: "arn:aws:sqs:eu-central-1:278497268453:catalogItemsQueue",
+    },
   },
 };
 

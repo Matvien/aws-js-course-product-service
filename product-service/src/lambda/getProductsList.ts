@@ -14,6 +14,9 @@ export const getProductsList = async (
 
     return {
       statusCode: 200,
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(products, null, 2),
     };
   } catch (e) {
