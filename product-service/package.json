@@ -5,10 +5,12 @@
   "scripts": {
     "deploy": "sls deploy",
     "initialUpload": "ENV=local ts-node ./src/db/initialUpload.ts",
-    "localDbTest": "ENV=local ts-node ./src/db/localTest.ts"
+    "localDbTest": "ENV=local ts-node ./src/db/localTest.ts",
+    "test": "REGION=eu-central-1 CREATE_PRODUCT_TOPIC_ARN=arn:aws:sns:eu-central-1:278497268453:createProductTopic ts-node ./src/test.ts"
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "3.540.0",
+    "@aws-sdk/client-sns": "3.554.0",
     "@aws-sdk/lib-dynamodb": "3.540.0",
     "uuid": "9.0.1",
     "yup": "1.4.0"

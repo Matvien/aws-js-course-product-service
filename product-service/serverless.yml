@@ -10,6 +10,9 @@ provider:
   environment:
     PRODUCTS_TABLE_NAME: !Ref productsTable
     STOCKS_TABLE_NAME: !Ref stocksTable
+    REGION: ${self:provider.region}
+    CREATE_PRODUCT_TOPIC_ARN:
+      Ref: "createProductTopic"
   iam:
     role:
       statements:
@@ -20,6 +23,11 @@ provider:
             - "dynamodb:BatchGetItem"
             - "dynamodb:PutItem"
           Resource: "*"
+        - Effect: Allow
+          Action:
+            - "sns:Publish"
+          Resource:
+            - Ref: "createProductTopic"
 
 functions:
   getProductsList:
@@ -28,18 +36,30 @@ functions:
       - httpApi:
           path: /products
           method: get
+
   getProductsById:
     handler: src/lambda/getProductsById.getProductsById
     events:
       - httpApi:
           path: /products/{productId}
           method: get
+
   createProduct:
     handler: src/lambda/createProduct.createProduct
     events:
       - httpApi:
           path: /products
           method: post
+
+  catalogBatchProcess:
+    handler: src/lambda/catalogBatchProcess.catalogBatchProcess
+    events:
+      - sqs:
+          arn:
+            Fn::GetAtt:
+              - catalogItemsQueue
+              - Arn
+          batchSize: 5
 
 resources:
   Resources:
@@ -56,6 +76,7 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 5
           WriteCapacityUnits: 5
+
     stocksTable:
       Type: AWS::DynamoDB::Table
       Properties:
@@ -69,6 +90,25 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 5
           WriteCapacityUnits: 5
+
+    catalogItemsQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: "catalogItemsQueue"
+        MessageRetentionPeriod: 60
+
+    createProductTopic:
+      Type: AWS::SNS::Topic
+      Properties:
+        TopicName: "createProductTopic"
+
+    emailSubscription:
+      Type: AWS::SNS::Subscription
+      Properties:
+        Protocol: "email"
+        Endpoint: "upmaten@gmail.com"
+        TopicArn:
+          Ref: "createProductTopic"
 
 plugins:
   - serverless-plugin-typescript
