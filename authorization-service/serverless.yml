@@ -1,0 +1,15 @@
+service: authorization-service
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: eu-central-1
+
+functions:
+  basicAuthorizer:
+    handler: basicAuthorizer.basicAuthorizer
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-dotenv-plugin
