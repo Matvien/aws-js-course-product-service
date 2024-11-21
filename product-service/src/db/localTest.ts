@@ -4,7 +4,9 @@ const main = async () => {
   try {
     const dbService = initializeDatabaseService();
 
-    console.log(await dbService.getAllProducts());
+    console.log(
+      await dbService.deleteProduct("1572d9da-775b-4e56-9659-6fa72ab033b6")
+    );
 
     // console.log(
     //   await dbService.getProduct("46fcd9a6-50ff-48f0-8115-1cc277c574ba")

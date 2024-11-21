@@ -1,5 +1,6 @@
 import {
   BatchGetCommand,
+  DeleteCommand,
   DynamoDBDocumentClient,
   PutCommand,
   ScanCommand,
@@ -91,6 +92,15 @@ export class DatabaseService {
         : 0;
 
     return { ...product, count } as Product;
+  }
+
+  async deleteProduct(id: string) {
+    await this.dbClient.send(
+      new DeleteCommand({
+        TableName: this.tableNames.products,
+        Key: { id },
+      })
+    );
   }
 
   async createProduct(product: ProductSchema) {
